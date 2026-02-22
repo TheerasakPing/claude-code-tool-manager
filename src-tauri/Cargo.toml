@@ -94,3 +94,10 @@ tokio-test = "0.4"                                 # Async test utilities
 insta = { version = "1", features = ["json"] }    # Snapshot testing for JSON output
 wiremock = "0.6"                                   # HTTP mocking for API tests
 serial_test = "3"                                  # Run tests serially when they share global state
+
+[profile.release]
+panic = "abort" # Strip expensive panic clean-up logic
+codegen-units = 1 # Compile craters one after another so the compiler can optimize better
+lto = true # Enables link to optimizations
+opt-level = "s" # Optimize for binary size
+strip = true # Remove debug symbols
