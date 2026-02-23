@@ -189,29 +189,19 @@ impl StdioMcpClient {
         info!("[MCP Client] Spawning process: {} {:?}", command, args);
 
         // On Windows, run through cmd.exe to properly resolve PATH
-        // On Unix, run through sh -c for the same reason
         #[cfg(windows)]
         let mut cmd = {
             let mut c = Command::new("cmd");
-            // Build the full command string
-            let full_command = if args.is_empty() {
-                command.to_string()
-            } else {
-                format!("{} {}", command, args.join(" "))
-            };
-            c.args(["/c", &full_command]);
+            c.arg("/c");
+            c.arg(command);
+            c.args(args);
             c
         };
 
         #[cfg(not(windows))]
         let mut cmd = {
-            let mut c = Command::new("sh");
-            let full_command = if args.is_empty() {
-                command.to_string()
-            } else {
-                format!("{} {}", command, args.join(" "))
-            };
-            c.args(["-c", &full_command]);
+            let mut c = Command::new(command);
+            c.args(args);
             c
         };
 

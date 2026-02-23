@@ -1,4 +1,6 @@
 <script lang="ts">
+	import DOMPurify from 'dompurify';
+
 	type Props = {
 		html: string;
 	};
@@ -13,7 +15,7 @@
 		rounded-lg prose-container"
 >
 	{#if html}
-		{@html html}
+		{@html DOMPurify.sanitize(html)}
 	{:else}
 		<p class="text-gray-400 dark:text-gray-500 italic">Nothing to preview</p>
 	{/if}

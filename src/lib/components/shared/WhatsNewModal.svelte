@@ -2,6 +2,7 @@
 	import { whatsNew } from '$lib/stores/whatsNew.svelte';
 	import { X, ExternalLink, Sparkles, Loader2 } from 'lucide-svelte';
 	import { open } from '@tauri-apps/plugin-shell';
+	import DOMPurify from 'dompurify';
 
 	function handleDismiss() {
 		whatsNew.dismiss();
@@ -112,7 +113,7 @@
 					{/if}
 
 					<div class="prose prose-sm dark:prose-invert max-w-none text-gray-700 dark:text-gray-300">
-						{@html renderMarkdown(whatsNew.release.body)}
+						{@html DOMPurify.sanitize(renderMarkdown(whatsNew.release.body))}
 					</div>
 				{:else}
 					<p class="text-gray-500 dark:text-gray-400">

@@ -7,9 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.2.3] - 2026-02-23
+
+### Fixed
+
+- Fixed command injection vulnerability in MCP execution process
+- Fixed XSS vulnerability in Markdown rendering with DOMPurify sanitization
+
 ## [2.1.2] - 2026-01-31
 
 ### Changed
+
 - **Dependencies**: Updated npm and Cargo dependencies
   - svelte 5.46.1 → 5.49.1
   - lucide-svelte 0.562.0 → 0.563.0
@@ -25,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.1.1] - 2026-01-26
 
 ### Changed
+
 - **Dependencies**: Updated npm and Cargo dependencies
   - @types/node 25.0.3 → 25.0.9
   - vitest 4.0.16 → 4.0.17
@@ -40,6 +49,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.1.0] - 2026-01-26
 
 ### Added
+
 - **Homebrew Cask Support**: Install via `brew tap tylergraydev/cctm && brew install --cask claude-code-tool-manager`
   - Automatic cask updates when new releases are published
   - Homebrew tap at [tylergraydev/homebrew-cctm](https://github.com/tylergraydev/homebrew-cctm)
@@ -50,11 +60,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.0.1] - 2026-01-17
 
 ### Fixed
+
 - Auto-updater endpoint now includes `latest.json` manifest for proper update detection
 
 ## [2.0.0] - 2026-01-12
 
 ### Added
+
 - **Multi-Editor Support**: Sync MCP configurations across 6 AI coding assistants
   - Claude Code (`~/.claude.json`)
   - OpenCode (`~/.config/opencode/opencode.json`)
@@ -67,11 +79,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Editor Badges**: Distinct badge colors for each editor in Settings
 
 ### Changed
+
 - Global and project MCPs now sync to all enabled editors automatically
 
 ## [1.8.3] - 2026-01-09
 
 ### Added
+
 - **Project Search**: Search functionality for filtering projects by name or path in the Projects list
 - **Project Detail Search**: Search inputs in the project detail modal to filter available MCPs, Skills, Agents, and Commands
   - Search clears automatically when switching between tabs
@@ -80,12 +94,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.8.1] - 2026-01-07
 
 ### Fixed
+
 - Version numbers now properly embedded in v1.8.0 release artifacts
 - Auto-updater will correctly detect version 1.8.1 as newer than 1.7.0
 
 ## [1.8.0] - 2026-01-07
 
 ### Added
+
 - **Lazy-Loading MCP Gateway**: New approach to MCP tool management that reduces context pollution
   - Gateway provides 3 meta-tools instead of exposing all backend tools upfront
   - `list_available_mcps`: Discover available MCP servers
@@ -100,6 +116,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Server Features**: Axum server with CORS support and graceful shutdown handling
 
 ### Fixed
+
 - Vitest clipboard mock now uses `Object.defineProperty` for happy-dom compatibility
 - ComponentExports test paths now use `$lib` alias
 - Added `$app/stores` mock for Sidebar.svelte imports
@@ -108,6 +125,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.5.0] - 2025-12-23
 
 ### Added
+
 - **Built-in MCP Server**: Expose Tool Manager functionality as an MCP server
   - 31 tools for programmatic management of MCPs, Skills, Sub-Agents, Hooks, and Projects
   - Streamable HTTP transport on configurable port (default: 23847)
@@ -126,9 +144,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Backend MCP management for Gateway
 
 ### Fixed
+
 - Built-in MCP Server now properly exposes tools via `tools/list` (added missing `#[tool_handler]` macro)
 
 ### Changed
+
 - Extended `mcp_client` service with Streamable HTTP protocol support
 - Added comprehensive unit tests for all database operations
 - Refactored Tauri commands to use testable helper functions
@@ -136,6 +156,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.4.0] - 2025-12-22
 
 ### Added
+
 - **MCP Execution & Exploration**: Interactively execute MCP tools directly from the Tool Manager
   - **Session Management**: Persistent sessions for stdio MCP servers with proper lifecycle management
   - **Tool Execution**: Execute any MCP tool with dynamic form-based parameter input
@@ -146,32 +167,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Rust Test CI/CD**: Separate GitHub Actions workflow for Rust tests, Clippy, and formatting checks
 
 ### Changed
+
 - Improved Rust test coverage from 46% to 64%
 - Applied consistent code formatting across all Rust files (cargo fmt)
 
 ### Fixed
+
 - Debug logger tests marked as flaky (require serial execution)
 - CI workflow now builds frontend before running Rust tests
 
 ## [1.3.10] - 2025-12-22
 
 ### Added
+
 - Debug mode persistence: Debug logging state now persists between app restarts
 - Version automation in CI/CD
 
 ## [1.3.9] - 2025-12-22
 
 ### Fixed
+
 - Default MCP type to "stdio" when type is not specified during import
 
 ## [1.3.8] - 2025-12-22
 
 ### Added
+
 - Full SSE MCP tool listing support with async implementation
 
 ## [1.3.7] - 2025-12-21
 
 ### Added
+
 - **HTTP MCP Testing**: Full support for Streamable HTTP transport
   - Session tracking via `mcp-session-id` header
   - Parses both JSON and SSE-formatted responses
@@ -182,12 +209,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Note: Full tool listing requires async implementation (coming soon)
 
 ### Fixed
+
 - HTTP MCPs now maintain session across initialize/tools requests
 - Proper Accept header (`application/json, text/event-stream`) for MCP spec compliance
 
 ## [1.3.6] - 2025-12-21
 
 ### Added
+
 - **MCP Testing**: Test stdio MCP servers directly from the app
   - Click "Test" in the MCP card menu to verify a server works
   - Auto-runs MCP protocol handshake and lists available tools
@@ -199,15 +228,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Imports MCP server configurations from OpenCode projects
 
 ### Changed
+
 - Improved process spawning to properly inherit PATH environment
 
 ### Fixed
+
 - npx commands now work correctly by running through shell
 - Better error messages for npm authentication issues
 
 ## [1.3.5] - 2025-12-21
 
 ### Added
+
 - **Debug Mode**: Enable file-based logging from Global Settings to help troubleshoot issues
   - Toggle in Settings > Global Settings
   - Captures Rust backend logs, frontend console logs, and Tauri invoke calls
@@ -217,41 +249,49 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Screenshots added to README documentation
 
 ### Fixed
+
 - "Ambiguous column name: created_at" SQL error when loading hooks
   - Fixed JOIN queries in hooks commands to use table-prefixed column names
 
 ### Changed
+
 - Bug report template now includes instructions for attaching debug logs
 
 ## [1.3.4] - 2025-12-21
 
 ### Added
+
 - Marketplace sort options: sort MCPs by "Recently Updated" (default) or "Name (A-Z)"
 - `updatedAt` field to track when MCPs were last updated in the registry
 
 ### Changed
+
 - Cleaned up debug logging from previous releases
 
 ## [1.3.3] - 2025-12-20
 
 ### Fixed
+
 - MCP Registry loading with dynamic JSON parsing
 - Duplicate MCPs in marketplace by deduplicating by registryId
 
 ## [1.3.2] - 2025-12-20
 
 ### Fixed
+
 - MCP Registry API response parsing
 - JSON deserialization for MCP Registry
 
 ## [1.3.1] - 2025-12-20
 
 ### Added
+
 - What's New modal that displays after auto-updates
 
 ## [1.3.0] - 2025-12-20
 
 ### Added
+
 - **MCP Registry Integration**: Browse and import MCPs from the official [MCP Registry](https://registry.modelcontextprotocol.io/)
   - Official Registry API integration
   - Search MCPs by name or description
@@ -261,16 +301,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Environment variable display with descriptions
 
 ### Fixed
+
 - Build workflow signing for CI/CD
 
 ## [1.2.0] - 2025-12-20
 
 ### Added
+
 - Auto-updater for seamless updates
 
 ## [1.1.0] - 2025-12-20
 
 ### Added
+
 - **Marketplace**: Browse and import Skills and Sub-Agents from GitHub repositories
   - Browse community repos for Skills and Sub-Agents
   - One-click import to library
@@ -280,14 +323,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Default repositories: [wshobson/commands](https://github.com/wshobson/commands), [hesreallyhim/awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code)
 
 ### Changed
+
 - Version now displays dynamically from app config
 
 ### Fixed
+
 - Import status resets when items are deleted from library
 
 ## [1.0.1] - 2025-12-20
 
 ### Fixed
+
 - Global MCP config now correctly writes to `~/.claude.json` instead of `~/.claude/settings.json`
 - Global Settings page displays correct config file path
 - Backup functionality now includes `claude.json`
@@ -295,6 +341,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2025-12-20
 
 ### Added
+
 - Initial release
 - **MCP Server Management**
   - MCP Library for creating, editing, and organizing configurations
