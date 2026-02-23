@@ -42,3 +42,9 @@ npm-debug.log*
 # Coverage
 /coverage/
 homebrew-tap/
+
+# Environment Stores and Agents
+.pnpm-store/
+.agent/
+.opencode/
+.claude-code/

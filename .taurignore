@@ -1,0 +1,7 @@
+.pnpm-store
+.agent
+.opencode
+.claude
+.claude-code
+.github
+node_modules
